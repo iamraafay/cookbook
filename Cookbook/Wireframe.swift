@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-protocol RootInstallations {
+protocol RootInitiations {
     func installRooViewController()
 }
 
@@ -17,6 +17,12 @@ protocol Presentation {
     var tabBarController: UITabBarController { get }
     var featuredViewController: UIViewController { get }
     var moreViewController: UIViewController { get }
+    
+    func navigationController(root viewController: UIViewController) -> UINavigationController
+}
+
+protocol Router {
+    
 }
 
 class Wireframe {
@@ -27,16 +33,19 @@ class Wireframe {
     }
 }
 
-extension Wireframe: RootInstallations {
+extension Wireframe: RootInitiations {
     func installRooViewController() {
         window?.rootViewController = tabBarController
     }
 }
 
 extension Wireframe: Presentation {
+    
     var tabBarController: UITabBarController {
         let tabBarController = UITabBarController(nibName: nil, bundle: nil)
-        tabBarController.viewControllers = [featuredViewController, moreViewController]
+        let featuredViewControllerNavStack = navigationController(root: featuredViewController)
+        let moreViewControllerNavStack = navigationController(root: moreViewController)
+        tabBarController.viewControllers = [featuredViewControllerNavStack, moreViewControllerNavStack]
         
         return tabBarController
     }
@@ -52,5 +61,9 @@ extension Wireframe: Presentation {
         moreViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.more, tag: 1)
         
         return moreViewController
+    }
+    
+    func navigationController(root viewController: UIViewController) -> UINavigationController {
+        return UINavigationController(rootViewController: viewController)
     }
 }

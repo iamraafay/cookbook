@@ -16,24 +16,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        let wireframe = Wireframe(window)
+        let wireframe: RootInitiations = Wireframe(window)
         wireframe.installRooViewController()
         
-        /*let tabBarController = UITabBarController(nibName: nil, bundle: nil)
-        let firstViewController = FeaturedViewController(nibName: nil, bundle: nil)
-        firstViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.featured, tag: 0)
-        
-        let secondViewController = MoreViewController(nibName: nil, bundle: nil)
-        secondViewController.tabBarItem = UITabBarItem(tabBarSystemItem: UITabBarSystemItem.more, tag: 1)
-        
-        tabBarController.setViewControllers([firstViewController, secondViewController], animated: true)
-        tabBarController.customizableViewControllers = [firstViewController, secondViewController]
-        tabBarController.selectedViewController = secondViewController
-        
-        
-        window?.rootViewController = tabBarController*/
         return true
     }
 

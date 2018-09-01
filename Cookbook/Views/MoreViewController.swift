@@ -12,7 +12,7 @@ class MoreViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "More"
         // Do any additional setup after loading the view.
     }
 
